@@ -1,0 +1,210 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+.navbar-brand img {
+  width: 130px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #4c4c4c;
+}
+
+footer {
+  background: #f1f1f1;
+
+}
+
+footer a {
+  color: #212529;
+}
+
+.navbar {
+  background-color: #d6d6d6 !important;
+}
+
+.company {
+  border-left: 1px solid #4c4c4c;
+}
+
+@media(max-width: 991px) {
+  .company {
+    border-left: 0px solid #4c4c4c;
+  }
+
+  .company,
+  .d-inline {
+    padding-left: 0 !important;
+  }
+
+  .sec-footer p,
+  .footer-copyright,
+  .footer-copyright a {
+    text-align: center !important;
+  }
+}
+
+.login {
+  min-height: 83vh;
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin: auto;
+  text-align: center;
+}
+
+.login img {
+  width: 15rem;
+  margin-bottom: 15px;
+  margin-top: 6rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+
+.login h2 {
+  color: #2c4285;
+  font-size: 22px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1199px) {
+  .form-container {
+    position: relative;
+    width: 100%;
+    top: 0;
+    right: 0;
+    padding-bottom: 25%;
+
+
+  }
+}
+
+.form-label:before,
+.form-label:after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  left: 0;
+  z-index: -1;
+}
+
+*/ form starting stylings .group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+input {
+  background: transparent;
+  font-size: 14px;
+  padding: 18px 10px 2px 5px;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #2c4285;
+}
+
+input:focus {
+  outline: none;
+}
+
+/*LABEL*/
+label {
+  color: #666;
+  font-size: 17px;
+  font-weight: normal;
+  text-align: left;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  font-family: "Helvetica Neue", sans-serif;
+  display: inline-block;
+}
+
+active state input:focus~label,
+input:valid~label {
+  top: 0px;
+  font-size: 14px;
+  color: #2c4285;
+}
+
+input:focus~.bar:before,
+input:focus~.bar:after {
+  width: 100%;
+}
+
+/* HIGHLIGHTER */
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+input:focus~.highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS */
+@keyframes inputHighlighter {
+  from {
+    background: #5264ae;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.clearfix {
+  clear: both;
+}
+
+.login a {
+  background: #2c4285;
+  color: white;
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+}
+
+.login a:hover {
+  background: #00175d;
+}
+
+.message {
+  margin: 15px 0 0;
+  color: #5f5f5f;
+  font-size: 14px;
+}
+
+.message a {
+  color: #000000;
+  background: transparent;
+  font-size: 14px;
+}
+
+.message a:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+#div_id_username,
+#div_id_password {
+  text-align: left !important;
+}

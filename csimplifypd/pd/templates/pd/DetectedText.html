@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block function %}
+<a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>LOG OUT</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5 col-md-12">
+            <img src="/media/documents/test.jpg" alt="Uploaded Image" style="height:400px">
+
+        </div>
+        <div class="col-lg-7 col-md-12">
+            <pre>
+            {{ text }}
+        </pre>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
