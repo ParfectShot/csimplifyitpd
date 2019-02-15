@@ -1,4 +1,4 @@
-from pd.forms.FileUploadForm import DocumentForm
+from pd.forms.fileuploadform import DocumentForm
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage

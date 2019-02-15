@@ -19,8 +19,23 @@
             <h4>Select files from your computer</h4>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form|crispy }}
-                <button type="submit">Upload</button>
+                <div class="container">
+                    {{ form.title.label_tag }}
+                    {{ form.title }}
+                </div>
+
+
+                <div class="file-upload">
+                    <div class="file-select">
+                        <div class="file-select-button">
+                            Choose File</div>
+                        <div class="file-select-name" id="noFile">No file chosen...</div>
+                        {{ form.image }}
+
+                    </div>
+                </div>
+                <div class="upload-btn-wrapper"><button type="submit" class="send-button">Upload</button></div>
+
             </form>
 
             <p><a href="{% url 'login' %}">Return to home</a></p>

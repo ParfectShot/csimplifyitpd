@@ -6,18 +6,36 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-5 col-md-12">
-            <img src="/media/documents/test.jpg" alt="Uploaded Image" style="height:400px">
 
-        </div>
-        <div class="col-lg-7 col-md-12">
-            <pre>
-            {{ text }}
-        </pre>
+
+
+
+</div>
+
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100">
+            <table>
+                <thead>
+                    <tr class="table100-head">
+                        <th>Image</th>
+                        <th>Text</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="column1"><img src="/media/documents/test.jpg" alt="Uploaded Image" style="height:600px"></th>
+                        <td class="column2">
+                            <pre>{{ text }}</pre>
+                            </th>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

@@ -15,7 +15,3 @@ class Img(models.Model):
 
     def __str__(self):
         return self.title
-
-    def delete(self, *args, **kwargs):
-        self.image.delete()
-        super().delete(*args, **kwargs)

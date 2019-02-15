@@ -1,5 +1,5 @@
 from django import forms
-from pd.models.ImageUpload import Img
+from pd.models.imageupload import Img
 
 
 class DocumentForm(forms.ModelForm):
