@@ -12,4 +12,4 @@ def fileup(request):
 
     else:
         form = DocumentForm()
-    return render(request, 'pd/FileUpload.html', {'form': form})
+    return render(request, 'pd/process-designer.html', {'form': form})

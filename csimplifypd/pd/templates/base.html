@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{% static 'pd/css/signup.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'pd/css/text.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'pd/css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pd/css/process-designer.css' %}">
 
     <!--===============================================================================================-->
 
@@ -73,12 +74,23 @@
 
 </body>
 
-<footer>
-
-    <!--===============================================================================================-->
-    <script src="{% static 'pd/js/main.js' %}"></script>
-    <script src="{% static 'pd/js/login.js' %}"></script>
-    <script src="{% static 'pd/js/fileup.js' %}"></script>
+<footer class="page-footer font-small">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mt-3">
+                <div class="footer-copyright">© 2018 Copyright:
+                    <a href="http://csimplifyit.com/"> C Simplify IT Services Pvt. Ltd.</a>
+                </div>
+            </div>
+            <hr class="clearfix w-100 d-md-none">
+            <div class="col-md-4 mt-3 text-right sec-footer">
+                <p>Build No: 1.00.01</p>
+            </div>
+        </div>
+    </div>
 </footer>
+<script src="{% static 'pd/js/main.js' %}"></script>
+<script src="{% static 'pd/js/login.js' %}"></script>
+<script src="{% static 'pd/js/fileup.js' %}"></script>
 
 </html>

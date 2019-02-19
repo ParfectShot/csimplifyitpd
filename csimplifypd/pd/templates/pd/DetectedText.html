@@ -1,41 +1,68 @@
 {% extends 'base.html' %}
+
 {% load static %}
+
+{% load crispy_forms_tags %}
+
 {% block function %}
 <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>LOG OUT</a>
 {% endblock %}
 
 {% block content %}
 
+<!-- Body Starts-->
+<div class="wrapper">
+    <!-- Left Sidebar Starts -->
+    <nav class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggle-sidebar">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button><br />
+        <ul>
+            <li><a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-inbox" aria-hidden="true"></i> Inbox</a></li>
+            <li><a href="#"><i class="fa fa-pencil-square" aria-hidden="true"></i> Quotes</a></li>
+            <li><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> Document Templates</a></li>
+            <li><a href="#"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Document Sections</a></li>
+            <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i> Customers</a></li>
+            <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Follow Up</a></li>
+            <li><a href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Vendors</a></li>
+            <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
+            <li><a href="#"><i class="fa fa-database" aria-hidden="true"></i> Product Master</a></li>
+            <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i> Reports</a></li>
+            <li><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Process Design</a></li>
+            <li><a href="#" class="active"><i class="fa fa-textdetect" aria-hidden="true"></i> Text Detect</a></li>
+        </ul>
+    </nav>
+    <!-- Left Sidebar Ends -->
 
 
+    <!-- Main Content Starts -->
+    <!-- In this part take only content div as a outer div for the same layout of every page of this website-->
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th>Image</th>
+                            <th>Text</th>
 
 
-</div>
-
-<div class="container-table100">
-    <div class="wrap-table100">
-        <div class="table100">
-            <table>
-                <thead>
-                    <tr class="table100-head">
-                        <th>Image</th>
-                        <th>Text</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="column1"><img src="/media/documents/test.jpg" alt="Uploaded Image" style="height:600px"></th>
-                        <td class="column2">
-                            <pre>{{ text }}</pre>
-                            </th>
-                    </tr>
-                </tbody>
-            </table>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="column1"><img src="/media/documents/test.jpg" alt="Uploaded Image" style="height:600px"></th>
+                            <td class="column2">
+                                <pre>{{ text }}</pre>
+                                </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 {% endblock %}
