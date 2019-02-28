@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from pd.control.ocr import getTextFromImage
-from pd.models.imageupload import Img
+from pd.models.ImageUpload import Img
 
 
 
