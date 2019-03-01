@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load mathfilters %}
+
+{% load get_item %}
 
 {% load crispy_forms_tags %}
 
@@ -45,6 +48,7 @@
                 <table>
                     <thead>
                         <tr class="table100-head">
+
                             <th>Image</th>
                             <th>Text</th>
 
@@ -52,12 +56,21 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        {% for img in image_obj %}
                         <tr>
-                            <td class="column1"><img src="/media/documents/test.jpg" alt="Uploaded Image" style="height:600px"></th>
+
+                            <td class="column1"><img src="{{ img.image.url }}" alt="Uploaded Image" style="height:100px"></th>
                             <td class="column2">
-                                <pre>{{ text }}</pre>
-                                </th>
+
+                                <pre>{{ text|get_item:img.image }}</pre>
+
+                            </td>
                         </tr>
+
+                        {% endfor %}
+
+
                     </tbody>
                 </table>
             </div>

@@ -7,7 +7,8 @@ from nltk.tag import pos_tag
 
 
 def getTextFromImage(img):
-
+    img = "media/" + img
+    print(img)
     text = pytesseract.image_to_string(img, lang='eng')
     return text
 
