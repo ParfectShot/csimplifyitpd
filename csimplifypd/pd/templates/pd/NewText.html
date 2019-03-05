@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% load retrieve_msg %}
+
+{% block function %}
+<a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>LOG OUT</a>
+{% endblock %}
+
+{% block content %}
+{% retrieve_msg %}
+<div class="container">
+    <div class="row">
+        <div class="column">
+            <img src="{{ form.image.url }}" alt="" style="height:200px;">
+        </div>
+        <div class="column">
+
+            <pre>{{ new_text }}</pre>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

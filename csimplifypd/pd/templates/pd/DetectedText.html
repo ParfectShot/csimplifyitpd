@@ -5,6 +5,7 @@
 
 {% load get_item %}
 
+
 {% load crispy_forms_tags %}
 
 {% block function %}
@@ -60,10 +61,10 @@
                         {% for img in image_obj %}
                         <tr>
 
-                            <td class="column1"><img src="{{ img.image.url }}" alt="Uploaded Image" style="height:100px"></th>
+                            <td class="column1 front_image"><img src="{{ img.image.url }}" alt="Uploaded Image" style="height:100px"></th>
                             <td class="column2">
 
-                                <pre>{{ text|get_item:img.image }}</pre>
+                                <pre>{{ text|get_item:img.image|truncatewords:50 }}</pre>
 
                             </td>
                         </tr>

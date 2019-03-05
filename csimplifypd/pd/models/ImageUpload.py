@@ -15,6 +15,7 @@ class Img(models.Model):
     image = models.ImageField(upload_to=update_filename)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text_file = models.CharField(max_length=100,blank=True)
 
     def __str__(self):
         return self.title
