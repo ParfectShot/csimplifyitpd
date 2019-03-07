@@ -14,13 +14,13 @@ def fileup(request):
             form.save()
             print(form.image)
             print(form.user_id)
-            send_message(str(form.image),form.user_id)
+            send_message(str(form.image), form.user_id)
 
-            
-            text_filename = 'media/' + str(form.image).rstrip('.jpg') +'.txt'
+            text_filename = 'media/' + str(form.image).rstrip('.jpg') + '.txt'
             form.text_file = text_filename
+            print(str(form.text_file))
             form.save()
-            with open(text_filename,'r+') as file:
+            with open(text_filename, 'r+') as file:
                 new_text = file.read()
 
             return render(request, "pd/NewText.html", {

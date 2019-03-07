@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load mathfilters %}
+<!-- {% load mathfilters %} -->
+{% load text_from_file %}
 
-{% load get_item %}
+
 
 
 {% load crispy_forms_tags %}
@@ -52,21 +53,23 @@
 
                             <th>Image</th>
                             <th>Text</th>
+                            <th>Delete</th>
 
 
                         </tr>
                     </thead>
                     <tbody>
 
-                        {% for img in image_obj %}
+                        {% for img in data %}
                         <tr>
 
                             <td class="column1 front_image"><img src="{{ img.image.url }}" alt="Uploaded Image" style="height:100px"></th>
                             <td class="column2">
-
-                                <pre>{{ text|get_item:img.image|truncatewords:50 }}</pre>
+                                {% text_from_file img.text_file as text%}
+                                <pre>{{ text }}</pre>
 
                             </td>
+                            <td><button><a href="#">Delete</a></button></td>
                         </tr>
 
                         {% endfor %}
