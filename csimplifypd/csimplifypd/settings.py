@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'csimplifypd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'textdetect',
-        'USER': 'paritosh',
+        'NAME': 'dms',
+        'USER': 'mac',
         'PASSWORD': 'mlpnkobji',
         'HOST': '',
         'PORT': '',

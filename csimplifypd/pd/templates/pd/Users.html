@@ -1,0 +1,438 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load retrievecodes %}
+{% load link %}
+
+{% block function %}
+<a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>LOG OUT</a>
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'pd/css/jquery-ui.css' %}">
+
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'pd/css/datatables.css' %}" />
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'pd/css/Users.css' %}">
+
+<script type="text/javascript" src="{% static 'pd/js/datatables.js' %}"></script>
+<script type='text/javascript' src="{% static 'pd/js/jquery-ui.js '%}"></script>
+
+
+
+<div class="wrapper">
+    <!-- Left Sidebar Starts -->
+    <nav class="sidebar" id="sidebar">
+        <button class="toggle-sidebar" id="toggle-sidebar">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </button><br />
+        <ul>
+            <li><a href="#"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-inbox" aria-hidden="true"></i> Inbox</a></li>
+            <li><a href="#"><i class="fa fa-pencil-square" aria-hidden="true"></i> Quotes</a></li>
+            <li><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i> Document Templates</a></li>
+            <li><a href="#"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Document Sections</a></li>
+            <li><a href="#"><i class="fa fa-users" aria-hidden="true"></i> Customers</a></li>
+            <li><a href="#"><i class="fa fa-comments" aria-hidden="true"></i> Follow Up</a></li>
+            <li><a href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Vendors</a></li>
+            <li><a href="#" class="active"><i class="fa fa-user" aria-hidden="true"></i> Users</a></li>
+            <li><a href="#"><i class="fa fa-database" aria-hidden="true"></i> Product Master</a></li>
+            <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i> Reports</a></li>
+            <li><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Process Design</a></li>
+            <li><a href="{% url 'fileupload' %}"><i class="fa fa-textdetect" aria-hidden="true"></i> Text Detect</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <p class="main-heading" id="user-heading"><span>Users:</span> Create users and update roles.</p>
+
+            <div class="search-wrapper">
+                <div class="search-product" id="search-product">
+                    <div class="search_main">
+                        <div class="search-input">
+
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input type="search" id="searchKeyword" onkeyup="searchUsersUsingSearchBar()" spellcheck="false">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <label>Search User</label>
+                            <span><i class="fa fa-times" onclick="searchUsers()" aria-hidden="true" data-toggle="tooltip"
+                                    title="Close"></i></span>
+                            <span class="dropdown-form"><i class="fa fa-sort-desc" aria-hidden="true" data-toggle="tooltip"
+                                    title="Advance Search"></i> </span>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="query1" class="query1">
+                    <div class="form-container">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="group">
+                                    <input type="text" id="txtUserName" autocomplete="off" spellcheck="false" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>User Name</label>
+                                </div>
+                                <!-- 
+                                <div class="group">
+                                    <input type="text" id="txtDepartment" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Department</label>
+                                </div> -->
+                                <div class="group department">
+                                    <input type="hidden" id="hdnSchtxtDepartmentId">
+                                    <input id="txtDepartment" type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <span id="spnAdvSrchDepartment" class="arrow"><i class="fa fa-angle-down"
+                                            aria-hidden="true"></i></span>
+                                    <label>Department</label>
+                                    <ul class="list-group listParent ulListSrch" id="selectdepartment">
+                                        <li>
+                                            Sales
+                                        </li>
+                                        <li>
+                                            Engineering
+                                        </li>
+                                        <li>
+                                            Supply Chain Management
+                                        </li>
+                                        <li>
+                                            Business Development Team
+                                        </li>
+                                        <li>
+                                            Human Resources
+                                        </li>
+                                        <li>
+                                            CSIT
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="group role">
+                                    <input type="hidden" id="hdnSchtxtrolesId">
+                                    <input id="txtroles" type="search" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <span id="scnAdvSrchRoles" class="arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    <label>User Roles</label>
+                                    <ul class="list-group listParent ulListSrch" id="selectrole"></ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="query-btn">
+                            <a href="#" class="btn btn-primary" onclick="searchUsers()">Search</a>
+                            <a href="#" id="btnresetAdv" class="btn btn-warning" onclick="resetUserAdvanceSearch()">Reset</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="details" id="details">
+                <div class="row">
+                    <div class="col-6 col-md-3 product-details">
+                        <p class="number intro"><span id="activeUserCount">{{ active }}</span></p>
+                        <p class="name" onclick="searchUsersby('active')">Active User</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <p class="number"><span id="inactiveUserCount">{{ inactive }}</span></p>
+                        <p class="name" onclick="searchUsersby('inactive')">Inactive Users</p>
+                    </div>
+
+                    <div class="col-6 col-md-3">
+                        <p class="number"><span id="allUsersCount">{{ total }}</span></p>
+                        <p class="name" onclick="searchUsersby('')">All Users</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <p class="number"><span onclick="createNewUserOrUpdateUser()">+</span></p>
+                        <p class="name" onclick="createNewUserOrUpdateUser()">Create New Users</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data_table" id="funcc">
+
+
+                <table id="userDetailsDataTable" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col" hidden="hidden">User RoleLink Id</th> -->
+                            <th scope="col" hidden="hidden">User ID</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Roles</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Last Modified On</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr class="datarow" name='user_row'>
+                            <td hidden="hidden" name='user_id' value={{ user.id }}>
+                                {{ user.id }}
+                            </td>
+                            <td>
+                                {{ user.username }}
+                            </td>
+                            <td>
+                                {{ user.contact_no }}
+                            </td>
+                            <td>
+                                {% retrievecodes user.department 'User Department' as dptcode %}
+                                {{ dptcode }}
+                            </td>
+                            <td>
+                                {% link user.id as role_string %}
+                                {{ role_string }}
+                            </td>
+                            <td>
+                                {% retrievecodes user.status 'User Status' as statuscode %}
+                                {{ statuscode }}
+                            </td>
+                            <td>
+                                <a href="{% url 'delete' id=user.id %}">Delete</a>
+                            </td>
+                            <td>
+                                {{ user.updated_at }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div id="query">
+                <!-- <span><i class="fa fa-pencil" onclick="" aria-hidden="true" data-toggle="tooltip" title="Edit User Details"></i></span> -->
+
+                <p class="main-heading"><span>New User:</span> Enter the following details to create new user.<span
+                        onclick="crossUserPopup()" class="close1" data-toggle="tooltip" title="Close">X</span></p>
+                <div class="editnewuser">
+                    <div class="form-container">
+                        <form class='my-ajax-form' method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <input type="hidden" id="hdnUserId" required>
+                                        <input type="hidden" id="hdnUserRolelinkIds" required>
+                                        <input autocomplete="off" type="text" name="txtfirstName" id="txtfirstName"
+                                            required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label id="firstNameLab">First Name<span class="asterisk">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <input type="text" autocomplete="off" name="txtlastName" id="txtlastName"
+                                            required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Last Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <input type="text" autocomplete="off" onkeypress="if(this.value.length==10) return false;"
+                                            name="txtcontactNo" id="txtcontactNo" maxlength="10" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"
+                                            pattern="^[0-9]*$" required="required" />
+                                        <!-- <input type="text" id="contactNo" required> -->
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <span class="label-brief"><i class="fa fa-info-circle" aria-hidden="true"
+                                                data-toggle="tooltip" title="Enter 10 digit Mobile Number"></i></span>
+                                        <label>Contact No.<span class="asterisk">*</span></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <input type="text" autocomplete="off" name="txtemailId" id="txtemailId"
+                                            spellcheck="false" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <span class="label-brief"><i class="fa fa-info-circle" aria-hidden="true"
+                                                data-toggle="tooltip" title="Enter your Panasomic E-Mail ID"></i></span>
+                                        <label>Email/User Id<span class="asterisk">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <input type="password" id="txtpassword" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Password*</label>
+                                        <span toggle="#txtpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="group">
+                                        <input type="password" id="txtrepassword" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label>Re-Enter Password*</label>
+                                        <span toggle="#txtrepassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-6 dept">
+                                    <div class="group">
+                                        <input id="hdnDeptSearchtxtdeptvalue" type="hidden" required>
+
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <span id="spnDepartment" class="arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        <label class='dptlabel'>Department *</label>
+
+                                        <span><select name="txtdeptvalue" id="depts">
+                                                <option id='showdptlabel'></option>
+                                                {% for code in dpt_codes %}
+                                                <option value="{{ code.key_code }}">{{ code.key_1 }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 status">
+                                    <div class="group">
+                                        <input id="hdnstatusId" type="hidden" required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <!-- <span class="label-brief"><i class="fa fa-question-circle" aria-hidden="true"
+                                                data-toggle="tooltip" title="If user left Panasonic then make it inactive and he/she doesnot have the acess to Digi Quote System"></i></span> -->
+                                        <span id="spnAdvSrchStatus" class="arrow"><i class="fa fa-angle-down"
+                                                aria-hidden="true"></i></span>
+                                        <label class="statlabel">Status *</label>
+                                        <select name="txtstatusvalue" id="stats">
+                                            <option id='showstatslabel'></option>
+                                            {% for code in status_codes %}
+                                            <option value="{{ code.key_code }}">{{ code.key_1 }}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 ">
+                                    <div class="group assignIndustrySegment">
+                                        <input type="hidden" id="hdnAssignIndustrySegmentId">
+                                        <input type="text" name="txtSchIndustrySegment" id="txtSchIndustrySegment"
+                                            required>
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <span class="arrow"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        <label>Assign Industry Segment *</label>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 ">
+
+                                </div>
+                            </div>
+                            <div class="tab-content">
+                                <div id="roles" class="tab-pane active">
+                                    <table class="table table-striped" id="userRolesTable">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Select Roles</th>
+                                                <th>User Roles</th>
+                                                <th>Role Description</th>
+
+
+
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="userRolesTableBody">
+                                            {% for role in roles %}
+                                            <tr>
+
+                                                <td>
+                                                    <input type="checkbox" name="selected_roles" value={{ role.id }}>
+                                                </td>
+                                                <td>
+                                                    {{ role.role_name }}
+                                                </td>
+                                                <td>
+                                                    {{ role.role_desc }}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                            <div class="result">
+                                <button type="submit" id='save_user' class="btn btn-success">Save</button>
+                                <a href="#" id="btnreset" class="btn btn-warning" onclick="resetUserScreen()">Reset</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal fade" id="deleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modelfix" role="document">
+                    <div class="modal-content  modelContent">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteContactTitle">Delete User</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pmodelTxt">Delete User'. Are you sure to proceed?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btnProductCancel" onclick="onClickCancelDeleteUserModel()" class="btn btn-secondary"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="button" id="btnProductYes" onclick="onclickYesDeleteUserModel()" class="btn btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="{% static 'pd/js/user.js' %}"></script>
+
+
+
+{% endblock %}
